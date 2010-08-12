@@ -37,15 +37,19 @@ module Heroku::Command
     def delete
       is_root?
 
-      display "===== Deleting compiled assets...", false
+      if missing_assets?
+        display "===== You already have deleted the assets..."
+      else
+        display "===== Deleting compiled assets...", false
 
-        run "rm -rf #{package_path}"
+          run "rm -rf #{package_path}"
 
-      display "===== Commiting deleted assets...", false
+        display "===== Commiting deleted assets...", false
 
-        run "git rm -rf #{package_path} && git commit -m 'delete assets at #{formatted_date(Time.now)}'"
+          run "git rm -rf #{package_path} && git commit -m 'delete assets at #{formatted_date(Time.now)}'"
 
-      display "===== Done..."
+        display "===== Done..."
+      end
     end
 
     private
@@ -57,6 +61,10 @@ module Heroku::Command
 
       def config_file_path
         File.join(Dir.getwd, 'config', 'assets.yml')
+      end
+
+      def missing_assets?
+        !File.exists? package_path
       end
 
       def missing_config_file?
