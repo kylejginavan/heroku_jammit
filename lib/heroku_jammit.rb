@@ -1,5 +1,5 @@
 =begin
-  Copyright (c) 2010 Kyle J. Ginavan & Mauro Torres.
+  Copyright (c) 2010 Kyle J. Ginavan & Mauro Torres.  AU!!!
 
   This file is part of Heroku Jammit Plugin.
 

@@ -1,11 +1,12 @@
 = Heroku Jammit Plugin
 
-Plugin that provides support for jammit on heroku. This allows you
-to automate the process of compiling and commit your assets to heroku.
+This plugin provides support for Jammit assets deployed to Heroku. 
+Heroku Jammit allows the automation of compiling and 
+commiting/deploying your assets to Heroku.
 
 == Installation
 
-If you haven't already, install hone's fabulous herocutter plugin:
+If you haven't already, install Hone's herocutter plugin:
 
     $ heroku plugins:install git://github.com/hone/heroku_herocutter.git
 
@@ -21,9 +22,16 @@ From your project's root directory:
 
     $ heroku jammit:add
 
-That'll make the assets and commit it.
+This will build the assets locally and commit/deploy to Heroku.
 
     $ heroku jammit:delete
 
-That'll delete the assets and commit it.
+This will delete the assets locally and remove from Heroku.
 
+== TODO:
+
+Please contact me if there is any enhancements you would like
+to this project.
+
+Cheers,
+KG
