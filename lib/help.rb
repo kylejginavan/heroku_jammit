@@ -19,7 +19,7 @@
 
 
 Heroku::Command::Help.group('Jammit Command') do |group|
-  group.command('jammit:add', 'compile assets and commited it')
-  group.command('jammit:delete', 'delete assets and commited it')
+  group.command('jammit:add', 'compile assets and commit it')
+  group.command('jammit:delete', 'delete assets and commit it')
 end
 
