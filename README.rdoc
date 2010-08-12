@@ -5,7 +5,13 @@ to automate the process of compiling and commit your assets to heroku.
 
 == Installation
 
-    $ heroku plugins:install git@github.com:kylejginavan/heroku_jammit.git
+If you haven't already, install hone's fabulous herocutter plugin:
+
+    $ heroku plugins:install git://github.com/hone/heroku_herocutter.git
+
+After that, a simple
+
+    $ heroku plugins:install jammit
 
 will get you up and running.
 
