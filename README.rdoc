@@ -1,0 +1,23 @@
+= Heroku Jammit Plugin
+
+Plugin that provides support for jammit on heroku. This allows you
+to automate the process of compiling and commit your assets to heroku.
+
+== Installation
+
+    $ heroku plugins:install git@github.com:kylejginavan/heroku_jammit.git
+
+will get you up and running.
+
+== Usage
+
+From your project's root directory:
+
+    $ heroku jammit:add
+
+That'll make the assets and commit it.
+
+    $ heroku jammit:delete
+
+That'll delete the assets and commit it.
+
