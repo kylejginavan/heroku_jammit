@@ -36,7 +36,7 @@ This will add, push and delete the assets to Heroku.
 == Authors:
 
 * Kyle J. Ginavan.
-* Mauro Torres - http://github.com/chebyte/
+* Mauro Torres - http://github.com/chebyte
 
 == TODO:
 
