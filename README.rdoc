@@ -1,7 +1,7 @@
 = Heroku Jammit Plugin
 
-This plugin provides support for Jammit assets deployed to Heroku. 
-Heroku Jammit allows the automation of compiling and 
+This plugin provides support for Jammit assets deployed to Heroku.
+Heroku Jammit allows the automation of compiling and
 commiting/deploying your assets to Heroku.
 
 == Installation
@@ -22,11 +22,16 @@ From your project's root directory:
 
     $ heroku jammit:add
 
-This will build the assets locally and commit/deploy to Heroku.
+This will build the assets locally and just commit.
 
     $ heroku jammit:delete
 
-This will delete the assets locally and remove from Heroku.
+This will delete the assets locally and commit.
+
+    $ heroku jammit:deploy
+
+This will add, delete and push the assets to Heroku.
+
 
 == TODO:
 
@@ -35,3 +40,4 @@ to this project.
 
 Cheers,
 KG
+
