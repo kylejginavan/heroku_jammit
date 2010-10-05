@@ -30,8 +30,13 @@ This will delete the assets locally and commit.
 
     $ heroku jammit:deploy
 
-This will add, delete and push the assets to Heroku.
+This will add, push and delete the assets to Heroku.
 
+
+== Authors:
+
+* Kyle J. Ginavan.
+* Mauro Torres - http://github.com/chebyte/
 
 == TODO:
 
