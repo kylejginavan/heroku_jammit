@@ -52,6 +52,28 @@ module Heroku::Command
       end
     end
 
+    def deploy
+      is_root?
+
+      branch = set_branch
+
+      unless branch.empty?
+        add
+
+        display "===== Deploying assets for #{@app} to heroku...", true
+
+        run "git push git@heroku.com:#{@app}.git #{branch}:master"
+
+        display "===== Done..."
+
+        delete
+      else
+        display "Unable to determine the current git branch, please checkout the branch you'd like to deploy"
+        exit(1)
+      end
+    end
+
+
     private
 
       def package_path
@@ -76,6 +98,10 @@ module Heroku::Command
           display "app rails not found!, you need stay on the root of one rails app"
           exit
         end
+      end
+
+      def set_branch
+       `git branch`.scan(/^\* (.*)\n/).to_s
       end
 
       def run(cmd)
