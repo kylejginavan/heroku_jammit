@@ -33,9 +33,7 @@ module Heroku::Command
 
       display "===== Done..."
     end
-    def show_branch
-      set_branch
-    end
+    
     def delete
       is_root?
 
