@@ -33,7 +33,9 @@ module Heroku::Command
 
       display "===== Done..."
     end
-
+    def show_branch
+      set_branch
+    end
     def delete
       is_root?
 
@@ -101,7 +103,8 @@ module Heroku::Command
       end
 
       def set_branch
-       `git branch`.scan(/^\* (.*)\n/).to_s
+       `git branch`.scan(/^\* (.*)\n/)
+       Regexp.last_match(1)
       end
 
       def run(cmd)
