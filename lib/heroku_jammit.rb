@@ -19,8 +19,23 @@
 
 module Heroku::Command
   class Jammit < BaseWithApp
+    @@jammit_installed = true
+    def self.jammit_installed
+      @@jammit_installed
+    end
+    def self.jammit_installed= (installed)
+      @@jammit_installed = installed
+    end
+    def fail_if_jammit_not_installed!
+      unless @@jammit_installed
+        puts "jammit gem is missing.  Please install jammit: sudo gem install jammit"
+        exit
+      end
+    end
 
     def add
+      fail_if_jammit_not_installed!
+
       is_root?
 
       display "===== Compiling assets...", false
@@ -35,6 +50,8 @@ module Heroku::Command
     end
     
     def delete
+      fail_if_jammit_not_installed!
+
       is_root?
 
       if missing_assets?
@@ -53,6 +70,8 @@ module Heroku::Command
     end
 
     def deploy
+      fail_if_jammit_not_installed!
+
       is_root?
 
       branch = set_branch

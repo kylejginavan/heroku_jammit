@@ -17,12 +17,11 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 =end
 
-begin
-  require 'jammit'
-rescue LoadError
-  raise "jammit gem is missing.  Please install jammit: sudo gem install jammit"
-end
 require 'yaml'
 require File.dirname(__FILE__) + '/lib/heroku_jammit'
 require File.dirname(__FILE__) + '/lib/help'
-
+begin
+  require 'jammit'
+rescue LoadError
+  Heroku::Command::Jammit.jammit_installed = false
+end
