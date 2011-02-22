@@ -4,15 +4,17 @@ This plugin provides support for Jammit assets deployed to Heroku.
 Heroku Jammit allows the automation of compiling and
 commiting/deploying your assets to Heroku.
 
+== Matthew O'Riordan's branch
+
+This branch is based on the more recent https://github.com/kylejginavan/heroku_jammit branch but includes friendlier Git messages and does not show an error message every time heroku is invoked on a project where Jammit gem is not installed (useful for users using RVM).
+
+There is another branch at https://github.com/chebyte/heroku-jammit that appears to be similar to kylejginavan's branch but lacks the ability to deploy.
+
 == Installation
-
-If you haven't already, install Hone's herocutter plugin:
-
-    $ heroku plugins:install git://github.com/hone/heroku_herocutter.git
 
 After that, a simple
 
-    $ heroku plugins:install jammit
+    $ heroku plugins:install git@github.com:mattheworiordan/heroku_jammit.git
 
 will get you up and running.
 
@@ -37,6 +39,7 @@ This will add, push and delete the assets to Heroku.
 
 * Kyle J. Ginavan.
 * Mauro Torres - http://github.com/chebyte
+* Matthew O'Riordan - http://github.com/mattheworiordan
 
 == TODO:
 
