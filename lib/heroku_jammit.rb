@@ -44,7 +44,7 @@ module Heroku::Command
 
       display "===== Commiting assets...", false
 
-        run "git add '#{package_path}' && git commit -m 'assets at #{formatted_date(Time.now)}'"
+        run "git add '#{package_path}' && git commit -m 'Jammit assets committed at #{formatted_date(Time.now)}'"
 
       display "===== Done..."
     end
@@ -63,7 +63,7 @@ module Heroku::Command
 
         display "===== Commiting deleted assets...", false
 
-          run "git rm -rf #{package_path} && git commit -m 'delete assets at #{formatted_date(Time.now)}'"
+          run "git rm -rf #{package_path} && git commit -m 'Jammit deleted assets at #{formatted_date(Time.now)}'"
 
         display "===== Done..."
       end
