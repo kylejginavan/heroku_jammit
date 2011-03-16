@@ -25,7 +25,7 @@ module Heroku::Command
 
       display "===== Compiling assets...", false
 
-        run "jammit -f"
+        run "#{ENV['JAMMIT_PATH']}jammit -f"
 
       display "===== Commiting assets...", false
 
