@@ -39,7 +39,7 @@ module Heroku::Command
       is_root?
 
       display "===== Compiling assets...", false
-
+        puts ENV["JAMMIT_PATH"] 
         run " /local/ruby/1.8/bin/jammit -f"
 
       display "===== Commiting assets...", false
