@@ -40,7 +40,7 @@ module Heroku::Command
 
       display "===== Compiling assets...", false
 
-        run "jammit -f"
+        run " /local/ruby/1.8/bin/jammit -f"
 
       display "===== Commiting assets...", false
 
