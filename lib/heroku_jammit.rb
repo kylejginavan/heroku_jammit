@@ -19,7 +19,7 @@
 
 module Heroku::Command
   class Jammit < BaseWithApp
-
+    attr_reader :app
     def add
       is_root?
 
