@@ -19,7 +19,6 @@
 
 module Heroku::Command
   class Jammit < BaseWithApp
-    attr_reader :app
     def add
       is_root?
 
@@ -60,9 +59,9 @@ module Heroku::Command
       unless branch.empty?
         add
 
-        display "===== Deploying assets for #{@app} to heroku...", true
+        display "===== Deploying assets for #{app} to heroku...", true
 
-        run "git push git@heroku.com:#{@app}.git #{branch}:master"
+        run "git push git@heroku.com:#{app}.git #{branch}:master"
 
         display "===== Done..."
 
