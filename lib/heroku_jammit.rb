@@ -19,20 +19,6 @@
 
 module Heroku::Command
   class Jammit < BaseWithApp
-    @@jammit_installed = true
-    def self.jammit_installed
-      @@jammit_installed
-    end
-    def self.jammit_installed= (installed)
-      @@jammit_installed = installed
-    end
-    def fail_if_jammit_not_installed!
-      unless @@jammit_installed
-        puts "jammit gem is missing.  Please install jammit: sudo gem install jammit"
-        exit
-      end
-    end
-
     def add
       fail_if_jammit_not_installed!
 
@@ -42,13 +28,15 @@ module Heroku::Command
        
         run "#{ENV['JAMMIT_PATH']}jammit -f"
 
+      run "jammit -f"
+
       display "===== Commiting assets...", false
 
-        run "git add '#{package_path}' && git commit -m 'Jammit assets committed at #{formatted_date(Time.now)}'"
+      run "git add '#{package_path}' && git commit -m 'assets at #{formatted_date(Time.now)}'"
 
       display "===== Done..."
     end
-    
+
     def delete
       fail_if_jammit_not_installed!
 
@@ -59,11 +47,11 @@ module Heroku::Command
       else
         display "===== Deleting compiled assets...", false
 
-          run "rm -rf #{package_path}"
+        run "rm -rf #{package_path}"
 
         display "===== Commiting deleted assets...", false
 
-          run "git rm -rf #{package_path} && git commit -m 'Jammit deleted assets at #{formatted_date(Time.now)}'"
+        run "git rm -rf #{package_path} && git commit -m 'delete assets at #{formatted_date(Time.now)}'"
 
         display "===== Done..."
       end
@@ -79,9 +67,9 @@ module Heroku::Command
       unless branch.empty?
         add
 
-        display "===== Deploying assets for #{@app} to heroku...", true
+        display "===== Deploying assets for #{app} to heroku...", true
 
-        run "git push git@heroku.com:#{@app}.git #{branch}:master"
+        run "git push git@heroku.com:#{app}.git #{branch}:master"
 
         display "===== Done..."
 
@@ -95,47 +83,47 @@ module Heroku::Command
 
     private
 
-      def package_path
-        file = open(config_file_path) {|f| YAML.load(f) }
-        dir = "public/" + (file["package_path"] || "assets")
-      end
+    def package_path
+      file = open(config_file_path) {|f| YAML.load(f) }
+      dir = "public/" + (file["package_path"] || "assets")
+    end
 
-      def config_file_path
-        File.join(Dir.getwd, 'config', 'assets.yml')
-      end
+    def config_file_path
+      File.join(Dir.getwd, 'config', 'assets.yml')
+    end
 
-      def missing_assets?
-        !File.exists? package_path
-      end
+    def missing_assets?
+      !File.exists? package_path
+    end
 
-      def missing_config_file?
-        !File.exists? config_file_path
-      end
+    def missing_config_file?
+      !File.exists? config_file_path
+    end
 
-      def is_root?
-        if missing_config_file?
-          display "app rails not found!, you need stay on the root of one rails app"
-          exit
-        end
+    def is_root?
+      if missing_config_file?
+        display "app rails not found!, you need stay on the root of one rails app"
+        exit
       end
+    end
 
-      def set_branch
-       `git branch`.scan(/^\* (.*)\n/)
-       Regexp.last_match(1)
-      end
+    def set_branch
+      `git branch`.scan(/^\* (.*)\n/)
+      Regexp.last_match(1)
+    end
 
-      def run(cmd)
-        shell cmd
-        if $?.exitstatus == 0
-          display "[OK]"
-        else
-          display "[FAIL]"
-        end
+    def run(cmd)
+      shell cmd
+      if $?.exitstatus == 0
+        display "[OK]"
+      else
+        display "[FAIL]"
       end
+    end
 
-      def formatted_date(date)
-        date.strftime("%A %d, %Y")
-      end
+    def formatted_date(date)
+      date.strftime("%A %d, %Y")
+    end
 
   end
 end
