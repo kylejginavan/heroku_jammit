@@ -17,17 +17,20 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 =end
 
+begin
+  require "rubygems"
+  require "jammit"
+rescue LoadError
+  raise "jammit gem is missing.  Please install jammit: sudo gem install jammit"
+end
+
 module Heroku::Command
   class Jammit < BaseWithApp
     def add
-      fail_if_jammit_not_installed!
-
       is_root?
 
       display "===== Compiling assets...", false
        
-        run "#{ENV['JAMMIT_PATH']}jammit -f"
-
       run "jammit -f"
 
       display "===== Commiting assets...", false
@@ -38,8 +41,6 @@ module Heroku::Command
     end
 
     def delete
-      fail_if_jammit_not_installed!
-
       is_root?
 
       if missing_assets?
@@ -58,8 +59,6 @@ module Heroku::Command
     end
 
     def deploy
-      fail_if_jammit_not_installed!
-
       is_root?
 
       branch = set_branch
@@ -85,7 +84,7 @@ module Heroku::Command
 
     def package_path
       file = open(config_file_path) {|f| YAML.load(f) }
-      dir = "public/" + (file["package_path"] || "assets")
+      dir  = "public/" + (file["package_path"] || "assets")
     end
 
     def config_file_path
